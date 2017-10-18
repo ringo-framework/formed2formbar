@@ -71,6 +71,7 @@ def find_elements(et):
         elements.append(convert_choice(e))
     return elements
 
+
 def parse_infile(xml, rg=None):
     """TODO: Docstring for parse_infile.
     :returns: TODO
@@ -83,8 +84,6 @@ def parse_infile(xml, rg=None):
     for e in et.findall(".//repeat"):
         if rg and e.attrib["name"] == rg:
             return [x[1] for x in find_elements(e)]
-        else:
-            ignored_elements.extend()
     all_elements = find_elements(et)
     ignored_names = [x[0] for x in ignored_elements]
 
@@ -100,7 +99,7 @@ def main(arguments):
 
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('formed.xml', help="Input file", type=argparse.FileType('r'))
+    parser.add_argument('infile', help="Input file", type=argparse.FileType('r'))
     parser.add_argument('-o', '--outfile', help="Output file",
                         default=sys.stdout, type=argparse.FileType('w'))
     parser.add_argument('-l', '--list-modules',
